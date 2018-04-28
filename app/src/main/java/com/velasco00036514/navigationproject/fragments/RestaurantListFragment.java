@@ -5,17 +5,21 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantListFragment extends Fragment {
     RecyclerView recyclerView;
     RestaurantsAdapter restaurantsAdapter;
     List<Restaurant> restaurantList;
+    boolean isFavorite = true;
 
     onRestaurantSelected mCallBack;
 
@@ -23,6 +27,7 @@ public class RestaurantListFragment extends Fragment {
     }
 
     public interface onRestaurantSelected{
+        public List<Restaurant> getFragmentList(boolean isFav);
     }
 
     @Override
@@ -47,12 +52,16 @@ public class RestaurantListFragment extends Fragment {
         //setting up recyclerview
         recyclerView = v.findViewById(R.id.recyclerView);
         recyclerView.setAdapter(restaurantsAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
 
         return v;
     }
 
-    public void updateList(){
-        restaurantsAdapter.notifyDataSetChanged();
+    public void setFav(boolean fav){
+        this.isFavorite = fav;
     }
 
+    public void setList(List<Restaurant> l){
+        this.restaurantList = l;
+    }
 }
