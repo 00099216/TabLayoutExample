@@ -1,4 +1,4 @@
-package com.velasco00036514.navigationproject;
+package com.velasco00036514.navigationproject.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.velasco00036514.navigationproject.R;
+import com.velasco00036514.navigationproject.Restaurant;
 
 import java.util.List;
 
@@ -35,7 +38,10 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
 
     @Override
     public int getItemCount() {
-        return restaurantList.size();
+        if (restaurantList != null)
+            return restaurantList.size();
+        else
+            return 0;
     }
 
     protected class RestaurantViewHolder extends RecyclerView.ViewHolder {

@@ -1,4 +1,4 @@
-package com.velasco00036514.navigationproject;
+package com.velasco00036514.navigationproject.adapters;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -11,8 +11,8 @@ import java.util.List;
 
 public class RestaurantPagerAdapter extends FragmentPagerAdapter {
     Context mCtx;
-    List<Fragment> fragmentList;
     List<String> titleList;
+    List<Fragment> fragmentList;
 
     public RestaurantPagerAdapter(FragmentManager fm, Context mCtx) {
         super(fm);
