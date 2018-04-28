@@ -1,12 +1,15 @@
-package com.velasco00036514.navigationproject;
+package com.velasco00036514.navigationproject.activities;
 
 import android.os.Bundle;
-
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+
+import com.velasco00036514.navigationproject.R;
+import com.velasco00036514.navigationproject.Restaurant;
+import com.velasco00036514.navigationproject.adapters.RestaurantPagerAdapter;
+import com.velasco00036514.navigationproject.fragments.RestaurantListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,10 +40,7 @@ public class MainActivity extends AppCompatActivity implements RestaurantListFra
         favoriteFragment = new RestaurantListFragment();
 
         //configuring fragments
-        restaurantFragment.setFav(false);
         restaurantFragment.setList(restaurantList);
-
-        favoriteFragment.setFav(true);
         favoriteFragment.setList(favRestaurants(restaurantList));
 
         //setting up the PagerAdapter
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements RestaurantListFra
         l.add(new Restaurant(1, "Pizza Hut", 3, false));
         l.add(new Restaurant(1, "Domino's Pizza", 4, false));
         l.add(new Restaurant(1, "Papa Jhons", 3, false));
-        l.add(new Restaurant(1, "Little Ceasars", 2, false));
+        l.add(new Restaurant(1, "Little Ceasars", 2, true));
 
         return l;
     }
@@ -76,13 +76,5 @@ public class MainActivity extends AppCompatActivity implements RestaurantListFra
         }
 
         return favs;
-    }
-
-    @Override
-    public List<Restaurant> getFragmentList(boolean isFav) {
-        if (!isFav)
-            return restaurantList;
-        else
-            return favRestaurants(restaurantList);
     }
 }
