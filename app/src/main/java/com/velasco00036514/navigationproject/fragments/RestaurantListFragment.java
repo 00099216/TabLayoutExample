@@ -1,4 +1,4 @@
-package com.velasco00036514.navigationproject;
+package com.velasco00036514.navigationproject.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,27 +7,26 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
+import com.velasco00036514.navigationproject.R;
+import com.velasco00036514.navigationproject.Restaurant;
+import com.velasco00036514.navigationproject.adapters.RestaurantsAdapter;
+
 import java.util.List;
 
 public class RestaurantListFragment extends Fragment {
     RecyclerView recyclerView;
     RestaurantsAdapter restaurantsAdapter;
     List<Restaurant> restaurantList;
-    boolean isFavorite = true;
-
     onRestaurantSelected mCallBack;
 
     public RestaurantListFragment() {
     }
 
     public interface onRestaurantSelected{
-        public List<Restaurant> getFragmentList(boolean isFav);
     }
 
     @Override
@@ -55,10 +54,6 @@ public class RestaurantListFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
 
         return v;
-    }
-
-    public void setFav(boolean fav){
-        this.isFavorite = fav;
     }
 
     public void setList(List<Restaurant> l){
