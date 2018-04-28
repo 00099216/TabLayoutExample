@@ -1,16 +1,19 @@
 package com.velasco00036514.navigationproject;
 
+import android.graphics.Bitmap;
+
 public class Restaurant {
     private int id;
     private String name;
     private float rating;
     private boolean favorite;
+    private String image;
 
     public Restaurant(int id, String name, float rating, boolean favorite) {
         this.id = id;
         this.name = name;
         this.rating = rating;
-        this.favorite = favorite;
+        this.favorite = favorite;;
     }
 
     public int getId() {
