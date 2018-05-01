@@ -48,6 +48,7 @@ public class RestaurantListFragment extends Fragment {
 
         if (savedInstanceState != null){
             restaurantList = savedInstanceState.getParcelableArrayList("restaurantList");
+            restaurantsAdapter = savedInstanceState.getParcelable("adapter");
         }
     }
 
@@ -56,6 +57,7 @@ public class RestaurantListFragment extends Fragment {
         super.onSaveInstanceState(outState);
 
         outState.putParcelableArrayList("restaurantList", (ArrayList<? extends Parcelable>) restaurantList);
+        outState.putParcelable("adapter", restaurantsAdapter);
     }
 
     @Nullable
@@ -64,7 +66,11 @@ public class RestaurantListFragment extends Fragment {
         View v = inflater.inflate(R.layout.restaurants_list, container, false);
 
         //setting up restaurant adapter
-        restaurantsAdapter = new RestaurantsAdapter(getContext(), restaurantList);
+        if (savedInstanceState != null){
+           restaurantsAdapter = savedInstanceState.getParcelable("adapter");
+        }else{
+            restaurantsAdapter = new RestaurantsAdapter(getContext(), restaurantList);
+        }
 
         //setting up recyclerview
         recyclerView = v.findViewById(R.id.recyclerView);
