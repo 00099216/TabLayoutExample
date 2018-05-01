@@ -1,6 +1,9 @@
-package com.velasco00036514.navigationproject;
+package com.velasco00036514.navigationproject.models;
 
-public class Restaurant {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Restaurant implements Parcelable {
     private int id;
     private String name;
     private float rating;
@@ -12,6 +15,25 @@ public class Restaurant {
         this.rating = rating;
         this.favorite = favorite;
     }
+
+    protected Restaurant(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        rating = in.readFloat();
+        favorite = in.readByte() != 0;
+    }
+
+    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
+        @Override
+        public Restaurant createFromParcel(Parcel in) {
+            return new Restaurant(in);
+        }
+
+        @Override
+        public Restaurant[] newArray(int size) {
+            return new Restaurant[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -43,5 +65,18 @@ public class Restaurant {
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(name);
+        parcel.writeFloat(rating);
+        parcel.writeByte((byte) (favorite ? 1 : 0));
     }
 }
