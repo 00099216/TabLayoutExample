@@ -6,7 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 
 import com.velasco00036514.navigationproject.R;
 import com.velasco00036514.navigationproject.adapters.RestaurantPagerAdapter;
@@ -101,10 +100,11 @@ public class MainActivity extends AppCompatActivity implements RestaurantListFra
 
     private ArrayList<Restaurant> fillRestaurants(){
         ArrayList<Restaurant> l = new ArrayList<>();
-        l.add(new Restaurant(1, "Pizza Hut", 3, false));
-        l.add(new Restaurant(1, "Domino's Pizza", 4, false));
-        l.add(new Restaurant(1, "Papa Jhons", 3, false));
-        l.add(new Restaurant(1, "Little Ceasars", 2, true));
+        String info = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+        l.add(new Restaurant(1, "Pizza Hut", info, 3, false));
+        l.add(new Restaurant(1, "Domino's Pizza", info, 4, false));
+        l.add(new Restaurant(1, "Papa Jhons", info, 3, false));
+        l.add(new Restaurant(1, "Little Ceasars", info, 2, true));
 
         return l;
     }
