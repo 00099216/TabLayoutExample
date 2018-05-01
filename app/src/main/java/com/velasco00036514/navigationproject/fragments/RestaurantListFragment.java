@@ -49,7 +49,20 @@ public class RestaurantListFragment extends Fragment {
         if (savedInstanceState != null){
             restaurantList = savedInstanceState.getParcelableArrayList("restaurantList");
             restaurantsAdapter = savedInstanceState.getParcelable("adapter");
+            restaurantsAdapter.notifyDataSetChanged();
         }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null){
+            restaurantList = savedInstanceState.getParcelableArrayList("restaurantList");
+            restaurantsAdapter = savedInstanceState.getParcelable("adapter");
+            restaurantsAdapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override
@@ -67,7 +80,7 @@ public class RestaurantListFragment extends Fragment {
 
         //setting up restaurant adapter
         if (savedInstanceState != null){
-           restaurantsAdapter = savedInstanceState.getParcelable("adapter");
+            restaurantsAdapter = savedInstanceState.getParcelable("adapter");
         }else{
             restaurantsAdapter = new RestaurantsAdapter(getContext(), restaurantList);
         }

@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import com.velasco00036514.navigationproject.R;
 import com.velasco00036514.navigationproject.adapters.RestaurantPagerAdapter;
@@ -76,8 +77,9 @@ public class MainActivity extends AppCompatActivity implements RestaurantListFra
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 List<Restaurant> newList = position == 0 ? restaurantList : favRestaurants(restaurantList);
-                if (pagerAdapter != null && pagerAdapter.getItem(position) != null)
-                    ((RestaurantListFragment)pagerAdapter.getItem(position)).updateList(newList);
+                RestaurantListFragment listFragment = ((RestaurantListFragment)pagerAdapter.getItem(position));
+                if (listFragment != null)
+                    listFragment.updateList(newList);
             }
 
             @Override
