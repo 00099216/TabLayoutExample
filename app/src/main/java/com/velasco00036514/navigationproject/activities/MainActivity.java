@@ -76,7 +76,8 @@ public class MainActivity extends AppCompatActivity implements RestaurantListFra
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 List<Restaurant> newList = position == 0 ? restaurantList : favRestaurants(restaurantList);
-                ((RestaurantListFragment)pagerAdapter.getItem(position)).updateList(newList);
+                if (pagerAdapter != null && pagerAdapter.getItem(position) != null)
+                    ((RestaurantListFragment)pagerAdapter.getItem(position)).updateList(newList);
             }
 
             @Override

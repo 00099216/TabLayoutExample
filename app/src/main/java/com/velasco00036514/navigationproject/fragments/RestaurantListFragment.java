@@ -85,6 +85,7 @@ public class RestaurantListFragment extends Fragment {
     }
 
     public void updateList(List<Restaurant> l){
-        restaurantsAdapter.updateList(l);
+        if (restaurantsAdapter != null)
+            restaurantsAdapter.updateList(l);
     }
 }
