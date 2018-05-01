@@ -31,9 +31,32 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         return vh;
     }
 
+    public void updateList(List<Restaurant> l){
+        restaurantList = l;
+        notifyDataSetChanged();
+    }
+
     @Override
-    public void onBindViewHolder(@NonNull RestaurantViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RestaurantViewHolder holder, final int position) {
+        final Restaurant restaurant = restaurantList.get(position);
+
         holder.restaurantTitle.setText(restaurantList.get(position).getName());
+        holder.favImage.setImageResource(restaurant.isFavorite() ? android.R.drawable.btn_star_big_on : android.R.drawable.btn_star_big_off);
+        holder.favImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (restaurant.isFavorite()){
+                    holder.favImage.setImageResource(android.R.drawable.btn_star_big_off);
+                    restaurantList.get(position).setFavorite(false);
+                }else{
+                    holder.favImage.setImageResource(android.R.drawable.btn_star_big_on);
+                    restaurantList.get(position).setFavorite(true);
+                }
+
+                notifyDataSetChanged();
+            }
+        });
+
     }
 
     @Override
@@ -45,7 +68,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
     }
 
     protected class RestaurantViewHolder extends RecyclerView.ViewHolder {
-        ImageView restaurantImage;
+        ImageView restaurantImage, favImage;
         TextView restaurantTitle;
 
         public RestaurantViewHolder(View itemView) {
@@ -53,6 +76,7 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
 
             restaurantImage = itemView.findViewById(R.id.restaurant_image);
             restaurantTitle = itemView.findViewById(R.id.restaurantTitle);
+            favImage = itemView.findViewById(R.id.favIcon);
         }
     }
 }
