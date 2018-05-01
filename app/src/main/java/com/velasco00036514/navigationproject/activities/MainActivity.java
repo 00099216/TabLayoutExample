@@ -72,6 +72,23 @@ public class MainActivity extends AppCompatActivity implements RestaurantListFra
         //setting up the Viewpager
         viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                List<Restaurant> newList = position == 0 ? restaurantList : favRestaurants(restaurantList);
+                ((RestaurantListFragment)pagerAdapter.getItem(position)).updateList(newList);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         //setting up the Tablayout
         tabLayout = findViewById(R.id.tabLayout);

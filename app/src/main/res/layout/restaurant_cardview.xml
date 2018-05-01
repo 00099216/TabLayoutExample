@@ -40,7 +40,8 @@
                 android:layout_height="match_parent" />
 
             <ImageView
-                android:src="@android:drawable/btn_star"
+                android:id="@+id/favIcon"
+                android:src="@android:drawable/btn_star_big_off"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent" />

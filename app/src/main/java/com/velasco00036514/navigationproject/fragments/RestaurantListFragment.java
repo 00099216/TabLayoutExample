@@ -83,4 +83,8 @@ public class RestaurantListFragment extends Fragment {
     public void setList(List<Restaurant> l){
         this.restaurantList = l;
     }
+
+    public void updateList(List<Restaurant> l){
+        restaurantsAdapter.updateList(l);
+    }
 }
