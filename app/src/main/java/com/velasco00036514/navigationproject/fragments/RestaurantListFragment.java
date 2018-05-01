@@ -2,6 +2,7 @@ package com.velasco00036514.navigationproject.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,9 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.velasco00036514.navigationproject.R;
-import com.velasco00036514.navigationproject.Restaurant;
 import com.velasco00036514.navigationproject.adapters.RestaurantsAdapter;
+import com.velasco00036514.navigationproject.models.Restaurant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantListFragment extends Fragment {
@@ -38,6 +40,22 @@ public class RestaurantListFragment extends Fragment {
         } catch (ClassCastException e){
             throw new ClassCastException(context.toString() + "must implement onRestaurantSelectedListener");
         }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if (savedInstanceState != null){
+            restaurantList = savedInstanceState.getParcelableArrayList("restaurantList");
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putParcelableArrayList("restaurantList", (ArrayList<? extends Parcelable>) restaurantList);
     }
 
     @Nullable

@@ -1,6 +1,8 @@
 package com.velasco00036514.navigationproject.adapters;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,11 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.velasco00036514.navigationproject.R;
-import com.velasco00036514.navigationproject.Restaurant;
+import com.velasco00036514.navigationproject.models.Restaurant;
 
 import java.util.List;
 
-public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.RestaurantViewHolder>{
+public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.RestaurantViewHolder> implements Parcelable{
     Context mCtx;
     List<Restaurant> restaurantList;
 
@@ -22,6 +24,22 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
         this.mCtx = mCtx;
         this.restaurantList = restaurantList;
     }
+
+    protected RestaurantsAdapter(Parcel in) {
+        restaurantList = in.createTypedArrayList(Restaurant.CREATOR);
+    }
+
+    public static final Creator<RestaurantsAdapter> CREATOR = new Creator<RestaurantsAdapter>() {
+        @Override
+        public RestaurantsAdapter createFromParcel(Parcel in) {
+            return new RestaurantsAdapter(in);
+        }
+
+        @Override
+        public RestaurantsAdapter[] newArray(int size) {
+            return new RestaurantsAdapter[size];
+        }
+    };
 
     @NonNull
     @Override
@@ -42,6 +60,16 @@ public class RestaurantsAdapter extends RecyclerView.Adapter<RestaurantsAdapter.
             return restaurantList.size();
         else
             return 0;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeTypedList(restaurantList);
     }
 
     protected class RestaurantViewHolder extends RecyclerView.ViewHolder {
